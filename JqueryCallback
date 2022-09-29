@@ -1,0 +1,13 @@
+function invokeAjaxAsync(callback) { 
+   $.ajax({url:'/path/to/resource', success: function(result) {
+         callback(result);
+   }});
+}
+
+
+$('a.example').click(function() {
+     var $this = $(this);
+     invokeAjaxAsync(function(result) {
+        $this.text(result.toString());
+     }); // browser will remain responsive, but still update text when the AJAX call completes.
+});
